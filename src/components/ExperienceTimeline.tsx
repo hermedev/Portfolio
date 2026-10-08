@@ -92,7 +92,7 @@ export const ExperienceTimeline: React.FC = () => {
                   </p>
                 )}
 
-                {/* Key Deliverables / Points */}
+                {/* Experience highlights */}
                 {hasDetails && item.achievements.length > 0 && (
                   <div className="space-y-2 pt-0.5">
                     <ul className="space-y-2 text-xs text-slate-300">

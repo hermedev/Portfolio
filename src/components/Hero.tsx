@@ -1,6 +1,5 @@
 import React from 'react';
-import { ArrowDown, FileText, Mail, Phone, MapPin, Github, Linkedin, ExternalLink, Gamepad2, Cpu, Briefcase } from 'lucide-react';
-import { WhatsAppIcon } from './icons/WhatsAppIcon';
+import { ArrowDown, FileText, Mail, MapPin, Github, Linkedin, Gamepad2, Cpu, Briefcase } from 'lucide-react';
 import { MIDHUN_INFO } from '../data/portfolioData';
 
 interface HeroProps {
@@ -12,18 +11,20 @@ interface HeroProps {
 
 export const Hero: React.FC<HeroProps> = ({ onOpenContact, onOpenResume, onViewGames, onNavigateToSection }) => {
   return (
-    <section id="about" className="relative py-14 sm:py-20 bg-engine-grid border-b border-slate-800/80">
+    <section id="about" className="relative py-14 sm:py-20 bg-engine-grid border-b border-slate-800/80 overflow-hidden">
+      <div className="particle-field opacity-70" />
       {/* Subtle ambient lighting */}
       <div className="absolute top-1/4 left-1/3 -translate-x-1/2 w-[500px] h-[300px] bg-cyan-500/10 blur-[140px] pointer-events-none rounded-full" />
+      <div className="scanline-glow" />
 
       <div className="max-w-6xl mx-auto px-4 sm:px-6 relative">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
           {/* Photo & Identity Column */}
-          <div className="lg:col-span-4 flex flex-col items-center sm:items-start lg:items-center">
+          <div className="lg:col-span-4 flex flex-col items-center sm:items-start lg:items-center animate-rise-in">
             {/* Photo */}
             <div className="relative group">
               {/* Outer frame */}
-              <div className="w-48 h-48 sm:w-56 sm:h-56 rounded-2xl overflow-hidden bg-slate-900 border-2 border-cyan-500/40 shadow-2xl relative z-10">
+              <div className="w-48 h-48 sm:w-56 sm:h-56 rounded-2xl overflow-hidden bg-slate-900 border-2 border-cyan-500/40 shadow-2xl shadow-cyan-950/30 relative z-10 animated-border">
                 <img
                   src={MIDHUN_INFO.photo}
                   alt={MIDHUN_INFO.name}
@@ -35,7 +36,7 @@ export const Hero: React.FC<HeroProps> = ({ onOpenContact, onOpenResume, onViewG
           </div>
 
           {/* Bio & Intro Details */}
-          <div className="lg:col-span-8 space-y-5 text-center sm:text-left">
+          <div className="lg:col-span-8 space-y-5 text-center sm:text-left animate-panel-in">
             <div className="space-y-2">
               <span className="text-xs font-mono text-cyan-400 tracking-wider uppercase block">
                 Hello, I'm
@@ -49,7 +50,7 @@ export const Hero: React.FC<HeroProps> = ({ onOpenContact, onOpenResume, onViewG
             </div>
 
             <p className="text-sm sm:text-base text-slate-300 leading-relaxed max-w-2xl">
-              Unity Game Developer with nearly 2 years of experience building 2D and 3D games for mobile and WebGL. Specializing in <strong className="text-white">multiplayer architecture (Photon Fusion &amp; Mirror)</strong>, networked gameplay, and mobile performance optimization using C#.
+              {MIDHUN_INFO.summary}
             </p>
 
             <div className="flex items-center justify-center sm:justify-start gap-2 text-xs font-mono text-slate-400">
@@ -64,7 +65,7 @@ export const Hero: React.FC<HeroProps> = ({ onOpenContact, onOpenResume, onViewG
               {onViewGames ? (
                 <button
                   onClick={onViewGames}
-                  className="px-5 py-2.5 bg-cyan-400 hover:bg-cyan-300 text-slate-950 font-bold rounded-lg shadow-lg shadow-cyan-950/40 transition-colors inline-flex items-center gap-2 text-xs"
+                  className="px-5 py-2.5 bg-cyan-400 hover:bg-cyan-300 text-slate-950 font-bold rounded-lg shadow-lg shadow-cyan-950/40 transition-colors inline-flex items-center gap-2 text-xs hover-lift"
                 >
                   <Gamepad2 className="w-3.5 h-3.5" />
                   <span>View Games</span>
@@ -72,7 +73,7 @@ export const Hero: React.FC<HeroProps> = ({ onOpenContact, onOpenResume, onViewG
               ) : (
                 <a
                   href="#games"
-                  className="px-5 py-2.5 bg-cyan-400 hover:bg-cyan-300 text-slate-950 font-bold rounded-lg shadow-lg shadow-cyan-950/40 transition-colors inline-flex items-center gap-2 text-xs"
+                  className="px-5 py-2.5 bg-cyan-400 hover:bg-cyan-300 text-slate-950 font-bold rounded-lg shadow-lg shadow-cyan-950/40 transition-colors inline-flex items-center gap-2 text-xs hover-lift"
                 >
                   <span>View Games</span>
                   <ArrowDown className="w-3.5 h-3.5" />
@@ -81,10 +82,10 @@ export const Hero: React.FC<HeroProps> = ({ onOpenContact, onOpenResume, onViewG
 
               <button
                 onClick={onOpenResume}
-                className="px-4 py-2.5 bg-slate-900 hover:bg-slate-800 border border-slate-800 text-slate-200 font-semibold rounded-lg transition-colors inline-flex items-center gap-2 text-xs"
+                className="px-4 py-2.5 bg-slate-900 hover:bg-slate-800 border border-slate-800 text-slate-200 font-semibold rounded-lg transition-colors inline-flex items-center gap-2 text-xs hover-lift"
               >
                 <FileText className="w-3.5 h-3.5 text-amber-400" />
-                <span>Download / View CV</span>
+                <span>View CV</span>
               </button>
 
               <button
@@ -95,33 +96,14 @@ export const Hero: React.FC<HeroProps> = ({ onOpenContact, onOpenResume, onViewG
               </button>
             </div>
 
-            {/* Direct Contact Links */}
+            {/* Key profile links */}
             <div className="pt-3 border-t border-slate-800/80 flex flex-wrap items-center justify-center sm:justify-start gap-4 text-xs font-mono text-slate-400">
               <a
                 href={`mailto:${MIDHUN_INFO.email}`}
                 className="hover:text-cyan-400 transition-colors flex items-center gap-1.5"
               >
                 <Mail className="w-3.5 h-3.5 text-cyan-400" />
-                <span>{MIDHUN_INFO.email}</span>
-              </a>
-
-              <a
-                href={`tel:${MIDHUN_INFO.phone}`}
-                className="hover:text-cyan-400 transition-colors flex items-center gap-1.5"
-              >
-                <Phone className="w-3.5 h-3.5 text-emerald-400" />
-                <span>{MIDHUN_INFO.phone}</span>
-              </a>
-
-              <a
-                href="https://wa.me/917560855307"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="hover:text-emerald-400 text-emerald-500 font-semibold transition-colors flex items-center gap-1.5"
-                title="Chat with Midhun on WhatsApp"
-              >
-                <WhatsAppIcon className="w-4 h-4 text-emerald-400" />
-                <span>WhatsApp</span>
+                <span>Email</span>
               </a>
 
               <a

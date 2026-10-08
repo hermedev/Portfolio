@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import { Gamepad2, Play, Youtube, Globe, ExternalLink, Info, ArrowRight } from 'lucide-react';
-import { PROJECTS, Project } from '../data/portfolioData';
+import { Gamepad2, Youtube, Globe, ArrowRight } from 'lucide-react';
+import { PROJECTS } from '../data/portfolioData';
 
 interface ProjectsSectionProps {
   onSelectProject: (projectId: string) => void;
@@ -19,7 +19,7 @@ export const ProjectsSection: React.FC<ProjectsSectionProps> = ({
 }) => {
   const [selectedFilter, setSelectedFilter] = useState<Filter>('All');
 
-  // In teaser mode, show top 3 featured studio games
+  // In teaser mode, show the strongest professional work first.
   const displayProjects = isTeaser
     ? PROJECTS.slice(0, 3)
     : PROJECTS.filter((p) => {
@@ -48,13 +48,13 @@ export const ProjectsSection: React.FC<ProjectsSectionProps> = ({
           <div className="space-y-1.5">
             <div className="flex items-center gap-2 text-xs font-mono text-cyan-400 uppercase tracking-wider">
               <Gamepad2 className="w-4 h-4" />
-              <span>{isTeaser ? 'Featured Games' : 'Shipped Titles & Prototypes'}</span>
+              <span>{isTeaser ? 'Featured Work' : 'Projects'}</span>
             </div>
             <h2 className="text-2xl sm:text-3xl font-bold font-display text-white tracking-tight">
-              {isTeaser ? 'Selected Studio Games' : 'All Games & Releases'}
+              {isTeaser ? 'Professional Projects' : 'Games & Prototypes'}
             </h2>
             <p className="text-xs sm:text-sm text-slate-400 max-w-xl">
-              Commercial releases at Carina Softlabs Inc alongside independent WebGL builds and prototypes. Click to view details, watch gameplay, or play live in browser.
+              A focused look at Unity work across studio projects, playable WebGL builds, and learning prototypes.
             </p>
           </div>
 
@@ -81,7 +81,7 @@ export const ProjectsSection: React.FC<ProjectsSectionProps> = ({
                 onClick={onViewAllGames}
                 className="px-4 py-2 bg-cyan-400 hover:bg-cyan-300 text-slate-950 font-bold text-xs rounded-lg transition-colors flex items-center gap-1.5 shadow-md"
               >
-                <span>View All Games</span>
+                <span>View All Projects</span>
                 <ArrowRight className="w-3.5 h-3.5" />
               </button>
             )
@@ -205,7 +205,7 @@ export const ProjectsSection: React.FC<ProjectsSectionProps> = ({
               onClick={onViewAllGames}
               className="px-6 py-3 bg-slate-900 hover:bg-slate-800 border border-cyan-500/40 text-cyan-400 hover:text-cyan-300 font-bold text-xs rounded-xl transition-all flex items-center gap-2 shadow-lg"
             >
-              <span>Explore All Games &rarr;</span>
+              <span>Explore All Projects &rarr;</span>
             </button>
           </div>
         )}

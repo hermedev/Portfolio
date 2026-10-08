@@ -20,11 +20,6 @@ export interface Project {
     url: string;
     type: 'webgl' | 'youtube' | 'github' | 'unityplay' | 'external';
   }[];
-  codeSnippet?: {
-    filename: string;
-    description: string;
-    code: string;
-  };
 }
 
 export interface Experience {
@@ -42,7 +37,7 @@ export const MIDHUN_INFO = {
   name: "Midhun Babu B",
   handle: "hermedev",
   title: "Unity Game Developer",
-  tagline: "Nearly 2 years of experience crafting high-performance 2D & 3D games for Mobile and WebGL. Specializing in multiplayer networking (Photon Fusion & Mirror), gameplay systems, and mobile optimization.",
+  tagline: "Unity developer focused on gameplay systems, multiplayer features, and playable WebGL/mobile projects.",
   phone: "+91 7560855307",
   email: "midhun123tvm@gmail.com",
   location: "Trivandrum, Kerala, India",
@@ -50,7 +45,7 @@ export const MIDHUN_INFO = {
   github: "https://github.com/hermedev",
   photo: "/src/assets/midhun/midhun_photo.jpg",
   experienceYears: "Nearly 2 Years",
-  summary: "Unity Game Developer specializing in multiplayer architecture, networked state synchronization, and performance optimization using C#, Photon Fusion, Photon PUN, and Mirror. Proven experience shipping mobile and WebGL titles, implementing complex gameplay loops like vehicle drift physics, AI traffic, MMORPG castle PvP systems, and mobile memory reduction via Addressables and object pooling."
+  summary: "Unity Game Developer with experience across mobile, WebGL, and multiplayer game projects. Comfortable building gameplay systems, UI flow, networked features, and performance-minded Unity scenes using C#."
 };
 
 export const PROJECTS: Project[] = [
@@ -59,109 +54,64 @@ export const PROJECTS: Project[] = [
     title: "Tokyo Ludo",
     category: "Studio Project",
     company: "Carina Softlabs Inc.",
-    tagline: "Multiplayer board game featuring Photon Fusion Shared Mode migration, networked state sync, and real-time turn management.",
+    tagline: "Multiplayer board game work focused on turn flow, UI, Photon networking, and connection stability.",
     genre: "Multiplayer Board Game",
-    platforms: ["Mobile (Android/iOS)", "Multiplayer"],
-    techStack: ["Unity", "C#", "Photon Fusion", "Photon PUN", "UI Toolkit", "Network State Sync"],
+    platforms: ["Mobile", "Multiplayer"],
+    techStack: ["Unity", "C#", "Photon Fusion", "Photon PUN", "UI"],
     image: "/src/assets/images/tokyo_ludo_gameplay_1791381401710.jpg",
     featured: true,
-    overview: "Tokyo Ludo is a dynamic multiplayer mobile board game developed at Carina Softlabs Inc. Midhun led the architectural migration from legacy Photon PUN (Master Client model) to modern Photon Fusion Shared Mode, ensuring rock-solid session stability, minimal packet overhead, and smooth reconnection handling.",
+    overview: "Tokyo Ludo is a multiplayer mobile board game developed at Carina Softlabs Inc. My work covered gameplay flow, UI screens, turn handling, and Photon networking tasks during the move from Photon PUN toward Photon Fusion.",
     keyContributions: [
-      "Led the migration of multiplayer architecture from Photon PUN (Master Client) to Photon Fusion Shared Mode, redesigning networked state synchronization, session management, and reconnection handling.",
-      "Built the full game UI and gameplay flow, including turn management, pawn movement animations, and state transitions.",
-      "Diagnosed and resolved critical networked race conditions and desync bugs, dramatically improving room connection stability."
+      "Worked on Photon PUN to Photon Fusion migration tasks, including session flow and networked state handling.",
+      "Built and refined UI/gameplay flow for turns, pawn movement, and player feedback.",
+      "Debugged connection, turn-order, and sync issues during multiplayer testing."
     ],
     architectureHighlights: [
       {
-        title: "Photon Fusion Shared Mode Migration",
-        description: "Re-architected client-authoritative state synchronization to eliminate reliance on host disconnect dropouts, establishing tick-accurate turn tokens."
+        title: "Multiplayer Turn Flow",
+        description: "Handled dice roll, pawn movement, turn change, and reconnect-related state across Photon sessions."
       },
       {
-        title: "Deterministic Turn State Machine",
-        description: "Engineered a robust state machine managing rolling phases, legal pawn move queries, turn timers, and auto-skip disconnect fallbacks."
+        title: "UI and State Feedback",
+        description: "Connected gameplay states to clear UI feedback so players could understand active turns and valid actions."
       }
     ],
     links: [
       { label: "Carina Softlabs Inc.", url: "https://carinasoftlabs.com", type: "external" },
-      { label: "Developer GitHub", url: "https://github.com/hermedev", type: "github" }
-    ],
-    codeSnippet: {
-      filename: "LudoTurnNetworkManager.cs",
-      description: "Photon Fusion Networked Turn State Management",
-      code: `using Fusion;
-using UnityEngine;
-
-namespace TokyoLudo.Multiplayer
-{
-    public class LudoTurnNetworkManager : NetworkBehaviour
-    {
-        [Networked] public int CurrentPlayerIndex { get; set; }
-        [Networked] public TickTimer TurnTimer { get; set; }
-        [Networked] public NetworkBool IsDiceRolled { get; set; }
-
-        public override void Spawned()
-        {
-            if (Object.HasStateAuthority)
-            {
-                StartNewTurn(0);
-            }
-        }
-
-        public void StartNewTurn(int nextPlayer)
-        {
-            CurrentPlayerIndex = nextPlayer;
-            IsDiceRolled = false;
-            TurnTimer = TickTimer.CreateFromSeconds(Runner, 15f);
-        }
-
-        public override void FixedUpdateNetwork()
-        {
-            if (TurnTimer.Expired(Runner) && Object.HasStateAuthority)
-            {
-                // Auto-advance turn if player timeouts
-                AdvanceToNextTurn();
-            }
-        }
-
-        private void AdvanceToNextTurn()
-        {
-            StartNewTurn((CurrentPlayerIndex + 1) % 4);
-        }
-    }
-}`
-    }
+      { label: "GitHub Profile", url: "https://github.com/hermedev", type: "github" }
+    ]
   },
   {
     id: "warvox",
     title: "Warvox",
     category: "Studio Project",
     company: "Carina Softlabs Inc.",
-    tagline: "MMORPG featuring Governor & Castle PvP systems, zone-based dungeon instancing, and proximity voice chat.",
+    tagline: "MMORPG feature work across PvP systems, dungeon flow, voice chat, and gameplay balancing.",
     genre: "MMORPG / PvP Fantasy",
     platforms: ["PC", "Mobile", "Multiplayer"],
-    techStack: ["Unity", "C#", "Mirror / Fusion", "Proximity Voice", "URP", "VFX/SFX Balancing"],
+    techStack: ["Unity", "C#", "Mirror", "Photon", "URP", "VFX/SFX"],
     image: "/src/assets/images/warvox_mmorpg_siege_1791381412869.jpg",
     featured: true,
-    overview: "Warvox is an ambitious fantasy MMORPG title at Carina Softlabs Inc. Midhun developed core PvP governance systems, zone-based instanced dungeons, and spatialized voice communication for guild raids.",
+    overview: "Warvox is a fantasy MMORPG project at Carina Softlabs Inc. I contributed to PvP gameplay features, dungeon-related systems, proximity voice chat integration, and iteration on weapon skills.",
     keyContributions: [
-      "Built the Governor and Castle PvP system, including contract creation, defense terms, tax mechanisms, and validation logic.",
-      "Implemented zone-based dungeon instancing allowing multiple parties to run isolated dungeon encounters without server overload.",
-      "Integrated a proximity-based 3D voice chat system enabling natural spatial audio during massive castle sieges.",
-      "Worked on weapon skill balancing by tweaking gameplay parameters, animation triggers, and integrating dynamic VFX/SFX."
+      "Worked on Governor and Castle PvP features, including contract setup, defense rules, and validation logic.",
+      "Implemented dungeon flow tasks for separating parties into their own gameplay spaces.",
+      "Integrated proximity voice chat and tested audio behavior during multiplayer sessions.",
+      "Adjusted weapon skill values, animation triggers, VFX, and SFX based on gameplay testing."
     ],
     architectureHighlights: [
       {
-        title: "Castle PvP Contract & Defense Engine",
-        description: "Implemented custom contract validation state verifying guild bids, defender rosters, siege timers, and automatic castle ownership transfer."
+        title: "PvP Rules and Validation",
+        description: "Built logic for guild contracts, defender setup, and rule checks around castle PvP flow."
       },
       {
-        title: "Proximity Spatial Audio Integration",
-        description: "Configured real-time 3D audio attenuation curves and player distance filters to deliver clear voice communication during 50+ player castle skirmishes."
+        title: "Voice and Combat Iteration",
+        description: "Worked on proximity voice behavior alongside weapon skill tuning and combat feedback."
       }
     ],
     links: [
       { label: "Studio Info", url: "https://carinasoftlabs.com", type: "external" },
-      { label: "Developer GitHub", url: "https://github.com/hermedev", type: "github" }
+      { label: "GitHub Profile", url: "https://github.com/hermedev", type: "github" }
     ]
   },
   {
@@ -169,130 +119,86 @@ namespace TokyoLudo.Multiplayer
     title: "Cheezy Wheelz",
     category: "Studio Project",
     company: "Carina Softlabs Inc.",
-    tagline: "3D open-world food delivery simulator with motorcycle drift mechanics, AI traffic, GPS navigation, and mobile optimization.",
-    genre: "3D Open-World Delivery Simulation",
-    platforms: ["Mobile (Android)", "3D Physics"],
-    techStack: ["Unity", "C#", "Motorcycle Physics", "AI NavMesh", "GPS Minimap", "Addressables", "Object Pooling"],
+    tagline: "3D delivery game work covering motorcycle controls, delivery flow, AI traffic, GPS, and mobile optimization.",
+    genre: "3D Open-World Delivery",
+    platforms: ["Mobile", "3D Physics"],
+    techStack: ["Unity", "C#", "Vehicle Physics", "AI", "NavMesh", "Addressables"],
     image: "/src/assets/images/cheezy_wheelz_delivery_1791381427184.jpg",
     featured: true,
-    overview: "Cheezy Wheelz is an open-world motorcycle food delivery game developed for mobile devices. Midhun engineered the complete core delivery gameplay loop, custom motorcycle physics extensions, pedestrian/vehicle AI traffic, and optimized the mobile memory footprint.",
+    overview: "Cheezy Wheelz is a mobile 3D food delivery game. My work focused on the delivery loop, motorcycle control feel, AI traffic/pedestrian behavior, minimap navigation, and mobile performance improvements.",
     keyContributions: [
-      "Built the core gameplay loop: a time-based food delivery system where delivery time and food temperature dynamically determine player rewards.",
-      "Extended a third-party motorcycle physics package with responsive wheelie, lean angle, and drift mechanics.",
-      "Developed AI pedestrian and traffic systems with intersection detection and dynamic path variation.",
-      "Designed a real-time GPS waypoint and minimap navigation system guiding delivery routes through busy city streets.",
-      "Optimized mobile performance using object pooling, Addressables for city assets, and dynamic NavMesh management."
+      "Built delivery mission flow with pickup, route guidance, timers, completion, and rewards.",
+      "Tuned motorcycle controls using an existing vehicle physics setup, including wheelie and drift feel.",
+      "Worked on AI traffic and pedestrian movement with route variation and intersection checks.",
+      "Added GPS/minimap guidance for delivery routes.",
+      "Improved mobile performance with object pooling, Addressables, and scene optimization."
     ],
     architectureHighlights: [
       {
-        title: "Dynamic Food Temperature & Delivery Scoring",
-        description: "Engineered real-time thermal decay calculations affected by speed, weather, and delivery time that calculate tip bonuses and ratings."
+        title: "Delivery Gameplay Loop",
+        description: "Connected pickup, navigation, delivery timing, reward calculation, and result feedback into one playable loop."
       },
       {
-        title: "Intersection AI & Traffic Management",
-        description: "Built spline-based vehicle traffic with Raycast vehicle avoidance, traffic light yield triggers, and dynamic NavMesh obstacle management."
+        title: "Mobile Scene Optimization",
+        description: "Used pooling and asset loading improvements to keep city gameplay more stable on mobile."
       }
     ],
     links: [
       { label: "Studio Showcase", url: "https://carinasoftlabs.com", type: "external" },
-      { label: "Developer GitHub", url: "https://github.com/hermedev", type: "github" }
-    ],
-    codeSnippet: {
-      filename: "FoodDeliveryTemperatureController.cs",
-      description: "Delivery Temperature & Reward Calculation System",
-      code: `using UnityEngine;
-
-namespace CheezyWheelz.Gameplay
-{
-    public class FoodDeliveryTemperatureController : MonoBehaviour
-    {
-        [SerializeField] private float initialTemperature = 100f; // Celsius
-        [SerializeField] private float coolingRatePerSecond = 0.85f;
-        [SerializeField] private float minimumTemperatureThreshold = 35f;
-
-        private float _currentTemperature;
-        private float _deliveryStartTime;
-
-        public void StartDelivery()
-        {
-            _currentTemperature = initialTemperature;
-            _deliveryStartTime = Time.time;
-        }
-
-        private void Update()
-        {
-            if (_currentTemperature > minimumTemperatureThreshold)
-            {
-                _currentTemperature -= coolingRatePerSecond * Time.deltaTime;
-            }
-        }
-
-        public (int reward, string rating) CompleteDelivery(int baseReward)
-        {
-            float elapsed = Time.time - _deliveryStartTime;
-            float temperatureRatio = Mathf.Clamp01(_currentTemperature / initialTemperature);
-            
-            int finalReward = Mathf.RoundToInt(baseReward * (0.6f + (temperatureRatio * 0.8f)));
-            string rating = temperatureRatio > 0.8f ? "Piping Hot! 5-Stars" : 
-                           temperatureRatio > 0.5f ? "Warm & Tasty 4-Stars" : "Lukewarm 3-Stars";
-
-            return (finalReward, rating);
-        }
-    }
-}`
-    }
+      { label: "GitHub Profile", url: "https://github.com/hermedev", type: "github" }
+    ]
   },
   {
     id: "game-2048",
     title: "2048 Game",
     category: "Indie / WebGL",
-    tagline: "Full-featured 2D puzzle board game built for WebGL with tile-merging logic, smooth animations, and high score tracking.",
+    tagline: "Playable Unity WebGL version of 2048 with tile movement, merging, score, and restart flow.",
     genre: "2D Board Puzzle",
     platforms: ["WebGL / Browser", "Mobile Friendly"],
-    techStack: ["Unity 2022", "C#", "WebGL", "2D Grid Algorithms", "PlayerPrefs"],
+    techStack: ["Unity", "C#", "WebGL", "2D Grid Logic", "PlayerPrefs"],
     image: "/src/assets/midhun/game_2048.png",
     featured: true,
-    overview: "A clean, responsive, and scalable 2048 clone developed by Midhun in Unity and compiled for WebGL. Features 4x4 matrix grid logic, smooth tile sliding animations, swipe/arrow key inputs, game-over detection, and persistent high scores.",
+    overview: "A Unity WebGL 2048 project built to practice grid logic, input handling, tile animation, scoring, and browser export.",
     keyContributions: [
-      "Built a complete 2048 clone for WebGL with tile-merging logic, grid system, and keyboard / swipe controls.",
-      "Added high score tracking, game-over detection, restart handling, and smooth tile lerp animations.",
-      "Optimized WebGL export for instant in-browser loading with low memory footprint."
+      "Built tile-merging logic, grid movement, keyboard/swipe input, and restart flow.",
+      "Added score tracking, game-over detection, and smooth tile movement.",
+      "Exported the project to WebGL and tested it in browser."
     ],
     architectureHighlights: [
       {
-        title: "Matrix Tile Shift & Merge Logic",
-        description: "Implemented clean 2D array row and column shifting algorithms that handle single-merge per turn rules matching the original 2048 specifications."
+        title: "Grid Logic",
+        description: "Used a 2D grid structure to handle movement, merging, score changes, and game-over checks."
       }
     ],
     links: [
-      { label: "Play WebGL Game Live", url: "https://rerwqef.github.io/2024-WebGame/", type: "webgl" },
-      { label: "GitHub Repository", url: "https://github.com/hermedev", type: "github" }
+      { label: "Play WebGL Game", url: "https://rerwqef.github.io/2024-WebGame/", type: "webgl" },
+      { label: "GitHub Profile", url: "https://github.com/hermedev", type: "github" }
     ]
   },
   {
     id: "killzone",
     title: "KillZone",
     category: "Indie / WebGL",
-    tagline: "Action-packed 2D platform runner game inspired by Killer Bean, where players eliminate enemies and escape the compound.",
-    genre: "2D Action Platform Runner",
+    tagline: "2D action platformer prototype with movement, shooting, enemies, and simple level goals.",
+    genre: "2D Action Platformer",
     platforms: ["PC / Mobile", "2D Platformer"],
-    techStack: ["Unity", "C#", "2D Physics", "Animation State Machine", "Weapon Mechanics"],
+    techStack: ["Unity", "C#", "2D Physics", "Animation", "Weapons"],
     image: "/src/assets/midhun/killzone.png",
     featured: true,
-    overview: "KillZone is a fast-paced 2D action platform runner. The player controls an operative equipped with dual pistols, navigating obstacle-laden levels, eliminating patrol guards with precision shooting, dodging bullets, and escaping before the timer expires.",
+    overview: "KillZone is a 2D action platformer prototype made in Unity. It focuses on player movement, weapon handling, enemy behavior, and camera follow during combat.",
     keyContributions: [
-      "Developed responsive player movement physics with jumping, sliding, and weapon aiming.",
-      "Built enemy patrol AI with vision cones and reactive shooting behaviors.",
-      "Implemented dynamic camera framing following player combat maneuvers."
+      "Developed player movement with jumping, sliding, aiming, and shooting.",
+      "Built enemy patrol and shooting behavior.",
+      "Implemented camera follow and basic combat feedback."
     ],
     architectureHighlights: [
       {
-        title: "2D Combat & Hit Detection",
-        description: "Raycast and projectile-based hit registration with particle impact sparks and ragdoll reactions."
+        title: "2D Combat Loop",
+        description: "Combined player aiming, enemy damage, projectiles, and impact feedback for a simple combat loop."
       }
     ],
     links: [
-      { label: "Watch Gameplay Video", url: "https://youtu.be/AHaBcDjm4Qw", type: "youtube" },
+      { label: "Watch Gameplay", url: "https://youtu.be/AHaBcDjm4Qw", type: "youtube" },
       { label: "GitHub Profile", url: "https://github.com/hermedev", type: "github" }
     ]
   },
@@ -300,49 +206,49 @@ namespace CheezyWheelz.Gameplay
     id: "driving-master",
     title: "Driving Master",
     category: "Indie / WebGL",
-    tagline: "3D parking simulator challenging players to navigate tight obstacle courses and park accurately before time runs out.",
+    tagline: "3D parking game prototype with vehicle controls, parking detection, timers, and obstacles.",
     genre: "3D Vehicle Simulator",
     platforms: ["Mobile / PC", "3D Physics"],
-    techStack: ["Unity 3D", "C#", "WheelCollider Physics", "Parking Zone Triggers"],
+    techStack: ["Unity", "C#", "WheelCollider", "Triggers"],
     image: "/src/assets/midhun/driving_master.png",
     featured: true,
-    overview: "Driving Master is a precision 3D car parking simulator game. Players must maneuver vehicles through obstacle-strewn parking lots, sharp reverse corners, and narrow barriers without scratching the paint, successfully stopping inside designated parking boxes.",
+    overview: "Driving Master is a 3D parking simulator prototype focused on vehicle control, level progression, collision checks, and parking-zone completion.",
     keyContributions: [
-      "Integrated realistic WheelCollider vehicle physics with steering angle limits, acceleration curves, and braking.",
-      "Engineered parking bay alignment detection evaluating parking box angle, boundary overlap, and stationary state.",
-      "Created multi-tier level progression with countdown timers and collision penalty counters."
+      "Implemented car movement using Unity vehicle physics.",
+      "Created parking zone checks for position, alignment, and stop state.",
+      "Added level progression with timer and collision penalties."
     ],
     architectureHighlights: [
       {
-        title: "Precision Parking Trigger Box System",
-        description: "Trigger volume evaluating all 4 wheels inside parking bounds with dot product alignment checks before rewarding completion stars."
+        title: "Parking Validation",
+        description: "Used trigger checks and angle validation to decide whether the vehicle was parked correctly."
       }
     ],
     links: [
-      { label: "Watch Gameplay Video", url: "https://youtu.be/89gjgZfeGvE", type: "youtube" },
+      { label: "Watch Gameplay", url: "https://youtu.be/89gjgZfeGvE", type: "youtube" },
       { label: "GitHub Profile", url: "https://github.com/hermedev", type: "github" }
     ]
   },
   {
     id: "brick-breaker",
-    title: "Brick Breaker Game",
-    category: "Indie / WebGL",
-    tagline: "Classic arcade brick breaking game created during early Unity training, featuring life counters, destroy VFX, and score tracking.",
+    title: "Brick Breaker",
+    category: "Prototype",
+    tagline: "Early Unity training project based on classic brick breaker mechanics.",
     genre: "Arcade / Physics 2D",
-    platforms: ["WebGL (Unity Play)", "Browser"],
-    techStack: ["Unity", "C#", "Physics 2D", "Particle VFX", "Unity Play WebGL"],
+    platforms: ["Unity Play", "Browser"],
+    techStack: ["Unity", "C#", "Physics 2D", "Unity Play"],
     image: "/src/assets/midhun/brickbreaker.png",
     featured: false,
-    overview: "Created in Midhun's 3rd week of learning Unity, Brick Breaker showcases core physics understanding, paddle controls, ball reflection angles, brick destruction particle effects, lives management, and game over loops.",
+    overview: "A small Unity Play project made while learning Unity basics. It covers paddle movement, ball physics, scoring, lives, and restart flow.",
     keyContributions: [
-      "Built 2D paddle movement with physics ball bounces and variable rebound angles based on paddle hit position.",
-      "Added particle shatter effects upon brick destruction and audio feedback.",
-      "Published directly to Unity Play for instant web browser gameplay."
+      "Built paddle movement, ball bounce behavior, score, and lives.",
+      "Added simple effects and audio feedback when bricks are destroyed.",
+      "Published the project to Unity Play."
     ],
     architectureHighlights: [
       {
-        title: "Paddle Angle Deflection",
-        description: "Calculates normalized offset from paddle center to redirect ball trajectories dynamically."
+        title: "Paddle Deflection",
+        description: "Adjusted ball direction based on where it hits the paddle."
       }
     ],
     links: [
@@ -352,27 +258,27 @@ namespace CheezyWheelz.Gameplay
   },
   {
     id: "rubiks-cube",
-    title: "Rubik's Cube 3D Simulation",
+    title: "Rubik's Cube 3D",
     category: "Prototype",
-    tagline: "Interactive 3D Rubik's cube simulator exploring face rotation matrices and slice grouping algorithms in Unity.",
-    genre: "3D Puzzle Simulation",
+    tagline: "3D puzzle prototype exploring cube face selection, rotation, and transform parenting.",
+    genre: "3D Puzzle Prototype",
     platforms: ["PC / Prototype"],
-    techStack: ["Unity 3D", "C#", "Transform Parenting", "Vector Rotation Math"],
+    techStack: ["Unity", "C#", "Transforms", "Vector Math"],
     image: "/src/assets/midhun/cube.png",
     featured: false,
-    overview: "A 3D simulation prototype replicating the classic Rubik's cube. Explores dynamic runtime parenting of individual sub-cubes to rotating face pivots, preserving coordinate alignment across multiple 90-degree rotations.",
+    overview: "A Unity prototype for practicing 3D transforms, runtime parenting, face selection, and rotation snapping.",
     keyContributions: [
-      "Developed face selection and rotational pivot hierarchy in 3D space.",
-      "Managed cubelet re-parenting and alignment snap calculations post-turn."
+      "Developed face selection and rotation pivot logic.",
+      "Managed cube piece grouping, rotation, and snap alignment."
     ],
     architectureHighlights: [
       {
-        title: "Dynamic Pivot Grouping",
-        description: "Dynamically identifies all 9 cubelets sharing a normal axis plane, parents them to a temporary rotation pivot, and un-parents back to root."
+        title: "Temporary Pivot Grouping",
+        description: "Groups selected cube pieces under a temporary pivot, rotates them, then returns them to the cube hierarchy."
       }
     ],
     links: [
-      { label: "Watch Prototype Video", url: "https://youtu.be/_RUn2X7c8N8", type: "youtube" },
+      { label: "Watch Prototype", url: "https://youtu.be/_RUn2X7c8N8", type: "youtube" },
       { label: "GitHub Profile", url: "https://github.com/hermedev", type: "github" }
     ]
   }
@@ -390,24 +296,19 @@ export const TECHNICAL_SKILLS = [
     skills: ["Photon PUN", "Photon Fusion", "Mirror"]
   },
   {
-    category: "Unity Skill Set",
-    description: "2D/3D development, render pipelines, cinematics, and animation.",
-    skills: ["2D/3D Game Development", "Multiplayer", "AR/VR", "URP", "HDRP", "Cinemachine", "Timeline", "Animator"]
+    category: "Unity Development",
+    description: "Gameplay, UI, animation, and scene workflows.",
+    skills: ["2D/3D Gameplay", "UI", "URP", "Cinemachine", "Animator"]
   },
   {
-    category: "Performance and Optimization",
+    category: "Performance",
     description: "Mobile frame budgeting, draw call reduction, and memory management.",
-    skills: ["Unity Profiler", "Object Pooling", "Occlusion Culling", "Addressables", "Sprite Atlas"]
+    skills: ["Unity Profiler", "Object Pooling", "Addressables", "Sprite Atlas"]
   },
   {
     category: "Version Control",
-    description: "Source code versioning, repository management, and team collaboration.",
-    skills: ["Git", "GitHub", "Perforce"]
-  },
-  {
-    category: "Other Engines",
-    description: "Multi-platform authoring and creative game engines.",
-    skills: ["Terra Studio", "Roblox"]
+    description: "Source code versioning and repository management.",
+    skills: ["Git", "GitHub"]
   }
 ];
 
@@ -415,28 +316,28 @@ export const WORK_HISTORY: Experience[] = [
   {
     role: "Unity Game Developer",
     company: "Carina Softlabs Inc",
-    period: "11/2024 – 08/2026",
+    period: "11/2024 - 08/2026",
     location: "Indore, India",
     type: "Work",
-    summary: "Worked as a full-time Unity Game Developer developing commercial multiplayer, MMORPG, and 3D simulation titles.",
+    summary: "Worked as a Unity Game Developer on commercial mobile, multiplayer, and 3D gameplay projects.",
     achievements: [
-      "Led Tokyo Ludo multiplayer architecture migration from Photon PUN to Photon Fusion Shared Mode, overhauling state sync and reconnect handling.",
-      "Engineered Governor & Castle PvP contracts, zone-based instanced dungeons, and proximity voice chat in Warvox MMORPG.",
-      "Developed motorcycle wheelie/drift physics, AI traffic systems, GPS navigation, and temperature-based delivery mechanics in Cheezy Wheelz 3D.",
-      "Applied mobile optimization techniques including Addressables, pre-warmed object pools, and dynamic NavMesh management."
+      "Contributed to Photon multiplayer work on Tokyo Ludo, including turn flow, sync issues, and migration tasks.",
+      "Worked on PvP, dungeon, proximity voice, and skill-balancing features for Warvox.",
+      "Built delivery gameplay, vehicle-control tuning, AI traffic, and GPS/minimap features for Cheezy Wheelz.",
+      "Used object pooling, Addressables, and scene optimization for mobile performance."
     ],
     technologies: ["Unity", "C#", "Photon Fusion", "Photon PUN", "Mirror", "URP", "Addressables", "NavMesh"]
   },
   {
     role: "Unity Game Development Course",
     company: "Brototype",
-    period: "2023 – 2024",
+    period: "2023 - 2024",
     location: "Trivandrum, India",
     type: "Course",
-    summary: "Intensive hands-on game development training specializing in Unity engine, C# scripting, and production game mechanics.",
+    summary: "Hands-on game development training focused on Unity, C# scripting, and playable prototypes.",
     achievements: [
-      "Mastered 2D and 3D game architectures, gameplay programming, and math for game developers.",
-      "Built multiple playable prototypes including 2048 WebGL, 2D platformers, and parking simulators.",
+      "Practiced 2D and 3D gameplay programming, Unity workflows, and game-development math.",
+      "Built playable prototypes including 2048 WebGL, 2D platformers, and parking simulators.",
       "Strengthened problem-solving through data structures, algorithms, and code reviews."
     ],
     technologies: ["Unity", "C#", "OOP", "Data Structures", "2D/3D Physics", "WebGL"]
@@ -444,7 +345,7 @@ export const WORK_HISTORY: Experience[] = [
   {
     role: "Higher Secondary (Commerce)",
     company: "G.H.S.S. Kilimanoor",
-    period: "2021 – 2023",
+    period: "2021 - 2023",
     location: "Trivandrum, India",
     type: "Education",
     summary: "",

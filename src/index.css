@@ -53,3 +53,142 @@
   background-size: 24px 24px;
   background-image: radial-gradient(rgba(255, 255, 255, 0.08) 1px, transparent 1px);
 }
+
+.particle-field {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.particle-field::before,
+.particle-field::after {
+  content: "";
+  position: absolute;
+  inset: -20%;
+  background-image:
+    radial-gradient(circle, rgba(34, 211, 238, 0.4) 1px, transparent 1.5px),
+    radial-gradient(circle, rgba(251, 191, 36, 0.28) 1px, transparent 1.5px),
+    radial-gradient(circle, rgba(148, 163, 184, 0.24) 1px, transparent 1.5px);
+  background-position: 0 0, 42px 68px, 90px 24px;
+  background-size: 140px 140px, 190px 190px, 230px 230px;
+  opacity: 0.42;
+  animation: particle-drift 28s linear infinite;
+}
+
+.particle-field::after {
+  filter: blur(1px);
+  opacity: 0.26;
+  transform: scale(1.2);
+  animation-duration: 42s;
+  animation-direction: reverse;
+}
+
+.scanline-glow {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: linear-gradient(
+    110deg,
+    transparent 0%,
+    transparent 42%,
+    rgba(34, 211, 238, 0.08) 50%,
+    transparent 58%,
+    transparent 100%
+  );
+  transform: translateX(-100%);
+  animation: scanline-pass 7s ease-in-out infinite;
+}
+
+.animate-panel-in {
+  animation: panel-in 420ms ease-out both;
+}
+
+.animate-rise-in {
+  animation: rise-in 520ms ease-out both;
+}
+
+.animated-border {
+  position: relative;
+}
+
+.animated-border::before {
+  content: "";
+  position: absolute;
+  inset: -1px;
+  border-radius: inherit;
+  padding: 1px;
+  background: linear-gradient(130deg, rgba(34, 211, 238, 0.6), rgba(15, 23, 42, 0), rgba(251, 191, 36, 0.35));
+  mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  mask-composite: exclude;
+  opacity: 0.65;
+  pointer-events: none;
+}
+
+.hover-lift {
+  transition: transform 180ms ease, border-color 180ms ease, background-color 180ms ease, box-shadow 180ms ease;
+}
+
+.hover-lift:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 34px rgba(0, 0, 0, 0.22);
+}
+
+@keyframes particle-drift {
+  from {
+    transform: translate3d(0, 0, 0);
+  }
+  to {
+    transform: translate3d(90px, -120px, 0);
+  }
+}
+
+@keyframes scanline-pass {
+  0%, 32% {
+    transform: translateX(-100%);
+    opacity: 0;
+  }
+  42%, 58% {
+    opacity: 1;
+  }
+  72%, 100% {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+}
+
+@keyframes panel-in {
+  from {
+    opacity: 0;
+    transform: translateY(12px) scale(0.98);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@keyframes rise-in {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .particle-field::before,
+  .particle-field::after,
+  .scanline-glow,
+  .animate-panel-in,
+  .animate-rise-in {
+    animation: none;
+  }
+
+  .hover-lift:hover {
+    transform: none;
+  }
+}

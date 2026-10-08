@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { X, ExternalLink, Code2, Layers, Check, Copy, Youtube, Globe, Play } from 'lucide-react';
+import { X, ExternalLink, Youtube, Globe } from 'lucide-react';
 import { Project } from '../data/portfolioData';
 
 interface ProjectModalProps {
@@ -8,18 +8,9 @@ interface ProjectModalProps {
 }
 
 export const ProjectModal: React.FC<ProjectModalProps> = ({ project, onClose }) => {
-  const [copiedCode, setCopiedCode] = useState(false);
-  const [activeTab, setActiveTab] = useState<'overview' | 'contributions' | 'code'>('overview');
+  const [activeTab, setActiveTab] = useState<'overview' | 'contributions'>('overview');
 
   if (!project) return null;
-
-  const handleCopyCode = () => {
-    if (project.codeSnippet) {
-      navigator.clipboard.writeText(project.codeSnippet.code);
-      setCopiedCode(true);
-      setTimeout(() => setCopiedCode(false), 2000);
-    }
-  };
 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-6 bg-black/85 backdrop-blur-sm overflow-y-auto">
@@ -82,7 +73,7 @@ export const ProjectModal: React.FC<ProjectModalProps> = ({ project, onClose }) 
                   : 'text-slate-400 hover:text-slate-200 hover:bg-slate-900'
               }`}
             >
-              Overview & Architecture
+              Overview
             </button>
             <button
               onClick={() => setActiveTab('contributions')}
@@ -92,21 +83,8 @@ export const ProjectModal: React.FC<ProjectModalProps> = ({ project, onClose }) 
                   : 'text-slate-400 hover:text-slate-200 hover:bg-slate-900'
               }`}
             >
-              Key Deliverables & Resume Impact
+              Contributions
             </button>
-            {project.codeSnippet && (
-              <button
-                onClick={() => setActiveTab('code')}
-                className={`px-3 py-1.5 text-xs font-medium rounded-lg transition-colors flex items-center gap-1.5 ${
-                  activeTab === 'code'
-                    ? 'bg-cyan-500 text-slate-950 font-semibold'
-                    : 'text-slate-400 hover:text-slate-200 hover:bg-slate-900'
-                }`}
-              >
-                <Code2 className="w-3.5 h-3.5" />
-                <span>C# Source Code</span>
-              </button>
-            )}
           </div>
 
           {/* Tab 1: Overview */}
@@ -121,7 +99,7 @@ export const ProjectModal: React.FC<ProjectModalProps> = ({ project, onClose }) 
 
               {/* Architecture Highlights */}
               <div className="space-y-3 pt-1">
-                <h3 className="text-xs font-mono uppercase text-slate-400">Architecture Highlights</h3>
+                <h3 className="text-xs font-mono uppercase text-slate-400">Development Notes</h3>
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                   {project.architectureHighlights.map((arch, i) => (
                     <div key={i} className="p-3.5 bg-slate-900/60 border border-slate-800 rounded-lg space-y-1">
@@ -149,10 +127,10 @@ export const ProjectModal: React.FC<ProjectModalProps> = ({ project, onClose }) 
             </div>
           )}
 
-          {/* Tab 2: Resume Key Deliverables */}
+          {/* Tab 2: Project contributions */}
           {activeTab === 'contributions' && (
             <div className="space-y-4">
-              <h3 className="text-xs font-mono uppercase text-slate-400">Core Engineering Accomplishments:</h3>
+              <h3 className="text-xs font-mono uppercase text-slate-400">What I Worked On</h3>
               <ul className="space-y-2.5 text-xs text-slate-200">
                 {project.keyContributions.map((contrib, i) => (
                   <li key={i} className="p-3 bg-slate-900/50 border border-slate-800 rounded-lg flex items-start gap-2.5">
@@ -161,32 +139,6 @@ export const ProjectModal: React.FC<ProjectModalProps> = ({ project, onClose }) 
                   </li>
                 ))}
               </ul>
-            </div>
-          )}
-
-          {/* Tab 3: C# Code Viewer */}
-          {activeTab === 'code' && project.codeSnippet && (
-            <div className="space-y-3">
-              <div className="flex items-center justify-between">
-                <div>
-                  <span className="text-xs font-mono text-cyan-400 font-semibold">{project.codeSnippet.filename}</span>
-                  <p className="text-[11px] text-slate-400">{project.codeSnippet.description}</p>
-                </div>
-
-                <button
-                  onClick={handleCopyCode}
-                  className="px-3 py-1.5 text-xs font-mono bg-slate-900 border border-slate-800 rounded text-slate-300 hover:text-white flex items-center gap-1.5 transition-colors"
-                >
-                  {copiedCode ? <Check className="w-3.5 h-3.5 text-emerald-400" /> : <Copy className="w-3.5 h-3.5" />}
-                  <span>{copiedCode ? 'Copied' : 'Copy C#'}</span>
-                </button>
-              </div>
-
-              <div className="p-4 bg-[#07080c] border border-slate-800 rounded-xl overflow-x-auto">
-                <pre className="font-mono text-xs text-slate-300 leading-relaxed">
-                  <code>{project.codeSnippet.code}</code>
-                </pre>
-              </div>
             </div>
           )}
 
