@@ -54,9 +54,7 @@ export const ResumeModal: React.FC<ResumeModalProps> = ({ isOpen, onClose }) => 
 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-6 bg-black/85 backdrop-blur-sm overflow-y-auto">
-      <div className="particle-field opacity-60" />
-      <div className="relative w-full max-w-3xl bg-[#0c0e14] border border-slate-800 rounded-2xl shadow-2xl shadow-cyan-950/20 overflow-hidden my-8 max-h-[92vh] flex flex-col text-slate-100 animate-panel-in animated-border">
-        <div className="scanline-glow" />
+      <div className="relative w-full max-w-3xl bg-[#0c0e14] border border-slate-800 rounded-2xl shadow-2xl overflow-hidden my-8 max-h-[92vh] flex flex-col text-slate-100">
         <div className="flex items-center justify-between px-6 py-4 bg-[#0e111a]/95 border-b border-slate-800 shrink-0 relative">
           <div className="flex items-center gap-2">
             <span className="font-display font-bold text-white text-base">Resume / CV</span>

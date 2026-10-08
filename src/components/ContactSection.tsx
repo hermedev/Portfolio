@@ -108,40 +108,48 @@ export const ContactSection: React.FC = () => {
                 </div>
               </div>
 
-              {/* Location */}
-              <div className="flex items-center gap-2 text-xs font-mono text-slate-400 pt-1">
-                <MapPin className="w-3.5 h-3.5 text-amber-400" />
-                <span>{MIDHUN_INFO.location}</span>
+              {/* Location & Work Availability */}
+              <div className="p-2.5 bg-slate-900 border border-slate-800 rounded-lg flex items-center justify-between text-xs font-mono">
+                <div className="flex items-center gap-2 text-slate-300">
+                  <MapPin className="w-3.5 h-3.5 text-amber-400 shrink-0" />
+                  <span>Trivandrum, India</span>
+                </div>
+                <span className="text-[10px] text-emerald-400 flex items-center gap-1 font-sans font-medium">
+                  <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
+                  Remote / Relocate
+                </span>
               </div>
 
-              {/* Social Channels */}
+              {/* Verified Profiles (Clean icon buttons, zero template bloat) */}
               <div className="space-y-2 pt-2 border-t border-slate-800/80">
-                <span className="text-[11px] font-mono text-slate-400 uppercase block">Profiles</span>
-                <div className="space-y-1.5">
-                  <a
-                    href={MIDHUN_INFO.linkedIn}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="flex items-center justify-between p-2.5 bg-slate-900 hover:bg-slate-800 border border-slate-800 rounded-lg text-xs font-mono text-slate-300 hover:text-white transition-colors"
-                  >
-                    <div className="flex items-center gap-2">
-                      <Linkedin className="w-3.5 h-3.5 text-blue-400" />
-                      <span>LinkedIn Profile</span>
-                    </div>
-                    <ExternalLink className="w-3 h-3 text-slate-500" />
-                  </a>
-
+                <span className="text-[11px] font-mono text-slate-400 uppercase block">Code &amp; Network</span>
+                <div className="grid grid-cols-2 gap-2">
                   <a
                     href={MIDHUN_INFO.github}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="flex items-center justify-between p-2.5 bg-slate-900 hover:bg-slate-800 border border-slate-800 rounded-lg text-xs font-mono text-slate-300 hover:text-white transition-colors"
+                    className="flex items-center justify-between px-3 py-2.5 bg-slate-900 hover:bg-slate-800 border border-slate-800 hover:border-slate-700 rounded-lg text-xs font-mono text-slate-200 transition-colors group"
+                    title="GitHub: hermedev"
                   >
-                    <div className="flex items-center gap-2">
-                      <Github className="w-3.5 h-3.5 text-slate-300" />
-                      <span>github.com/hermedev</span>
+                    <div className="flex items-center gap-2 min-w-0">
+                      <Github className="w-4 h-4 text-slate-300 group-hover:text-white shrink-0" />
+                      <span className="truncate">GitHub</span>
                     </div>
-                    <ExternalLink className="w-3 h-3 text-slate-500" />
+                    <ExternalLink className="w-3 h-3 text-slate-500 group-hover:text-slate-400 shrink-0 ml-1" />
+                  </a>
+
+                  <a
+                    href={MIDHUN_INFO.linkedIn}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex items-center justify-between px-3 py-2.5 bg-slate-900 hover:bg-slate-800 border border-slate-800 hover:border-blue-500/40 rounded-lg text-xs font-mono text-slate-200 transition-colors group"
+                    title="LinkedIn: Midhun Babu"
+                  >
+                    <div className="flex items-center gap-2 min-w-0">
+                      <Linkedin className="w-4 h-4 text-blue-400 group-hover:text-blue-300 shrink-0" />
+                      <span className="truncate">LinkedIn</span>
+                    </div>
+                    <ExternalLink className="w-3 h-3 text-slate-500 group-hover:text-slate-400 shrink-0 ml-1" />
                   </a>
                 </div>
               </div>

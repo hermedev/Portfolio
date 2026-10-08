@@ -316,7 +316,7 @@ export const WORK_HISTORY: Experience[] = [
   {
     role: "Unity Game Developer",
     company: "Carina Softlabs Inc",
-    period: "11/2024 - 08/2026",
+    period: "11/2024 - Present",
     location: "Indore, India",
     type: "Work",
     summary: "Worked as a Unity Game Developer on commercial mobile, multiplayer, and 3D gameplay projects.",

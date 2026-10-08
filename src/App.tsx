@@ -14,8 +14,8 @@ import { Footer } from './components/Footer';
 import { ProjectModal } from './components/ProjectModal';
 import { VideoModal } from './components/VideoModal';
 import { ResumeModal } from './components/ResumeModal';
-import { PROJECTS, Project } from './data/portfolioData';
-import { ArrowLeft, User, Mail } from 'lucide-react';
+import { PROJECTS } from './data/portfolioData';
+import { Mail } from 'lucide-react';
 
 export default function App() {
   const [activeView, setActiveView] = useState<'about' | 'games'>('about');
@@ -121,32 +121,7 @@ export default function App() {
           /* ============================================================ */
           /* VIEW 2: DEDICATED GAMES SHOWCASE PAGE                        */
           /* ============================================================ */
-          <div className="space-y-6">
-            {/* Top Navigation Bar to jump back to Profile */}
-            <div className="bg-[#0b0d14] border-b border-slate-800 py-3.5">
-              <div className="max-w-6xl mx-auto px-4 sm:px-6 flex items-center justify-between">
-                <button
-                  onClick={() => handleSelectView('about')}
-                  className="inline-flex items-center gap-2 text-xs font-mono text-cyan-400 hover:text-cyan-300 transition-colors"
-                >
-                  <ArrowLeft className="w-3.5 h-3.5" />
-                  <span>&larr; Back to About Midhun</span>
-                </button>
-
-                <div className="flex items-center gap-3">
-                  <span className="text-xs text-slate-400 font-mono hidden sm:inline">
-                    Carina Softlabs Inc &middot; Indie &middot; WebGL
-                  </span>
-                  <button
-                    onClick={handleOpenContact}
-                    className="px-3 py-1 bg-slate-900 border border-slate-800 hover:bg-slate-800 text-slate-200 text-xs rounded transition-colors"
-                  >
-                    Contact Developer
-                  </button>
-                </div>
-              </div>
-            </div>
-
+          <div className="space-y-12">
             {/* Full Games Grid with Filters, WebGL & Videos */}
             <ProjectsSection
               onSelectProject={(id) => setSelectedProjectId(id)}

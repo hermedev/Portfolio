@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Menu, X, Gamepad2, ArrowUpRight, FileText, User, Cpu, Briefcase, Mail } from 'lucide-react';
+import { Menu, X, Gamepad2, ArrowUpRight, FileText, User, Mail } from 'lucide-react';
 import { MIDHUN_INFO } from '../data/portfolioData';
 
 interface NavbarProps {
@@ -100,51 +100,6 @@ export const Navbar: React.FC<NavbarProps> = ({
         </div>
       </div>
 
-      {/* Sub-navigation Bar: Only shown when "About Me" is selected ("IN DOWN ABOUT ME") */}
-      {activeView === 'about' && (
-        <div className="hidden sm:block border-t border-slate-800/70 bg-[#06070a]/95 backdrop-blur-md px-4 sm:px-6 py-2 transition-all">
-          <div className="max-w-6xl mx-auto flex items-center justify-between">
-            <div className="flex items-center gap-1.5 sm:gap-2">
-              <span className="text-[11px] font-mono text-slate-500 uppercase tracking-wider mr-1">
-                Inside About:
-              </span>
-              <button
-                onClick={() => onSelectView('about', 'about')}
-                className="px-2.5 py-1 text-xs font-medium text-slate-300 hover:text-cyan-400 hover:bg-slate-800/70 rounded-md transition-colors flex items-center gap-1.5"
-              >
-                <User className="w-3.5 h-3.5 text-cyan-400" />
-                <span>Profile</span>
-              </button>
-              <button
-                onClick={() => onSelectView('about', 'skills')}
-                className="px-2.5 py-1 text-xs font-medium text-slate-300 hover:text-cyan-400 hover:bg-slate-800/70 rounded-md transition-colors flex items-center gap-1.5"
-              >
-                <Cpu className="w-3.5 h-3.5 text-cyan-400" />
-                <span>Skills</span>
-              </button>
-              <button
-                onClick={() => onSelectView('about', 'experience')}
-                className="px-2.5 py-1 text-xs font-medium text-slate-300 hover:text-cyan-400 hover:bg-slate-800/70 rounded-md transition-colors flex items-center gap-1.5"
-              >
-                <Briefcase className="w-3.5 h-3.5 text-blue-400" />
-                <span>Experience</span>
-              </button>
-              <button
-                onClick={() => onSelectView('about', 'contact')}
-                className="px-2.5 py-1 text-xs font-medium text-slate-300 hover:text-cyan-400 hover:bg-slate-800/70 rounded-md transition-colors flex items-center gap-1.5"
-              >
-                <Mail className="w-3.5 h-3.5 text-emerald-400" />
-                <span>Contact</span>
-              </button>
-            </div>
-
-            <span className="text-[11px] font-mono text-slate-500 hidden md:inline">
-              Unity Game Developer &bull; Midhun Babu
-            </span>
-          </div>
-        </div>
-      )}
-
       {/* Mobile Menu Drawer */}
       {mobileMenuOpen && (
         <div className="md:hidden border-b border-slate-800 bg-[#0c0e14] px-4 pt-3 pb-5 space-y-3">
@@ -180,54 +135,27 @@ export const Navbar: React.FC<NavbarProps> = ({
             </button>
           </div>
 
-          {activeView === 'about' && (
-            <div className="space-y-1 pt-1">
-              <span className="text-[10px] font-mono text-slate-500 uppercase tracking-wider px-2">
-                About Sections:
-              </span>
-              <button
-                onClick={() => {
-                  onSelectView('about', 'skills');
-                  setMobileMenuOpen(false);
-                }}
-                className="w-full text-left py-2 px-2 text-xs text-slate-300 hover:text-cyan-400 hover:bg-slate-900 rounded-lg flex items-center gap-2"
-              >
-                <Cpu className="w-3.5 h-3.5 text-cyan-400" />
-                <span>Skills</span>
-              </button>
-              <button
-                onClick={() => {
-                  onSelectView('about', 'experience');
-                  setMobileMenuOpen(false);
-                }}
-                className="w-full text-left py-2 px-2 text-xs text-slate-300 hover:text-cyan-400 hover:bg-slate-900 rounded-lg flex items-center gap-2"
-              >
-                <Briefcase className="w-3.5 h-3.5 text-blue-400" />
-                <span>Experience</span>
-              </button>
-              <button
-                onClick={() => {
-                  onSelectView('about', 'contact');
-                  setMobileMenuOpen(false);
-                }}
-                className="w-full text-left py-2 px-2 text-xs text-slate-300 hover:text-cyan-400 hover:bg-slate-900 rounded-lg flex items-center gap-2"
-              >
-                <Mail className="w-3.5 h-3.5 text-emerald-400" />
-                <span>Contact</span>
-              </button>
-            </div>
-          )}
-
-          <div className="pt-2 flex flex-col gap-2">
+          <div className="pt-1 flex flex-col gap-2">
             <button
               onClick={() => {
                 setMobileMenuOpen(false);
                 onOpenResume();
               }}
-              className="w-full py-2 text-center text-xs font-medium text-slate-300 bg-slate-900 border border-slate-800 rounded-lg flex items-center justify-center gap-1.5"
+              className="w-full py-2.5 text-center text-xs font-medium text-slate-300 bg-slate-900 border border-slate-800 rounded-lg flex items-center justify-center gap-1.5"
             >
               <FileText className="w-3.5 h-3.5 text-amber-400" />
               <span>View Resume / CV</span>
+            </button>
+
+            <button
+              onClick={() => {
+                setMobileMenuOpen(false);
+                onOpenContact();
+              }}
+              className="w-full py-2.5 text-center text-xs font-semibold text-slate-950 bg-cyan-400 hover:bg-cyan-300 rounded-lg flex items-center justify-center gap-1.5"
+            >
+              <Mail className="w-3.5 h-3.5" />
+              <span>Contact / Hire Me</span>
             </button>
           </div>
         </div>

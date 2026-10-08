@@ -1,5 +1,5 @@
 import React from 'react';
-import { ArrowDown, FileText, Mail, MapPin, Github, Linkedin, Gamepad2, Cpu, Briefcase } from 'lucide-react';
+import { FileText, Mail, MapPin, Github, Linkedin, Gamepad2, ArrowUpRight } from 'lucide-react';
 import { MIDHUN_INFO } from '../data/portfolioData';
 
 interface HeroProps {
@@ -9,34 +9,31 @@ interface HeroProps {
   onNavigateToSection?: (sectionId: string) => void;
 }
 
-export const Hero: React.FC<HeroProps> = ({ onOpenContact, onOpenResume, onViewGames, onNavigateToSection }) => {
+export const Hero: React.FC<HeroProps> = ({ onOpenContact, onOpenResume, onViewGames }) => {
   return (
     <section id="about" className="relative py-14 sm:py-20 bg-engine-grid border-b border-slate-800/80 overflow-hidden">
-      <div className="particle-field opacity-70" />
-      {/* Subtle ambient lighting */}
-      <div className="absolute top-1/4 left-1/3 -translate-x-1/2 w-[500px] h-[300px] bg-cyan-500/10 blur-[140px] pointer-events-none rounded-full" />
-      <div className="scanline-glow" />
+      {/* Subtle calm ambient lighting */}
+      <div className="absolute top-1/3 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[320px] bg-cyan-500/5 blur-[120px] pointer-events-none rounded-full" />
 
       <div className="max-w-6xl mx-auto px-4 sm:px-6 relative">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
           {/* Photo & Identity Column */}
-          <div className="lg:col-span-4 flex flex-col items-center sm:items-start lg:items-center animate-rise-in">
+          <div className="lg:col-span-4 flex flex-col items-center sm:items-start lg:items-center">
             {/* Photo */}
             <div className="relative group">
-              {/* Outer frame */}
-              <div className="w-48 h-48 sm:w-56 sm:h-56 rounded-2xl overflow-hidden bg-slate-900 border-2 border-cyan-500/40 shadow-2xl shadow-cyan-950/30 relative z-10 animated-border">
+              <div className="w-48 h-48 sm:w-56 sm:h-56 rounded-2xl overflow-hidden bg-slate-900 border-2 border-cyan-500/40 shadow-2xl shadow-cyan-950/20 relative z-10">
                 <img
                   src={MIDHUN_INFO.photo}
                   alt={MIDHUN_INFO.name}
                   className="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-500"
                 />
               </div>
-              <div className="absolute -inset-2 bg-gradient-to-r from-cyan-500/20 to-blue-600/20 rounded-2xl blur-lg -z-0" />
+              <div className="absolute -inset-2 bg-gradient-to-r from-cyan-500/10 to-blue-600/10 rounded-2xl blur-lg -z-0" />
             </div>
           </div>
 
           {/* Bio & Intro Details */}
-          <div className="lg:col-span-8 space-y-5 text-center sm:text-left animate-panel-in">
+          <div className="lg:col-span-8 space-y-5 text-center sm:text-left">
             <div className="space-y-2">
               <span className="text-xs font-mono text-cyan-400 tracking-wider uppercase block">
                 Hello, I'm
@@ -75,8 +72,8 @@ export const Hero: React.FC<HeroProps> = ({ onOpenContact, onOpenResume, onViewG
                   href="#games"
                   className="px-5 py-2.5 bg-cyan-400 hover:bg-cyan-300 text-slate-950 font-bold rounded-lg shadow-lg shadow-cyan-950/40 transition-colors inline-flex items-center gap-2 text-xs hover-lift"
                 >
+                  <Gamepad2 className="w-3.5 h-3.5" />
                   <span>View Games</span>
-                  <ArrowDown className="w-3.5 h-3.5" />
                 </a>
               )}
 
@@ -85,14 +82,15 @@ export const Hero: React.FC<HeroProps> = ({ onOpenContact, onOpenResume, onViewG
                 className="px-4 py-2.5 bg-slate-900 hover:bg-slate-800 border border-slate-800 text-slate-200 font-semibold rounded-lg transition-colors inline-flex items-center gap-2 text-xs hover-lift"
               >
                 <FileText className="w-3.5 h-3.5 text-amber-400" />
-                <span>View CV</span>
+                <span>View CV / Resume</span>
               </button>
 
               <button
                 onClick={onOpenContact}
-                className="px-4 py-2.5 text-slate-300 hover:text-white text-xs font-semibold transition-colors"
+                className="px-4 py-2.5 text-slate-300 hover:text-white text-xs font-semibold transition-colors inline-flex items-center gap-1"
               >
-                Hire Me &rarr;
+                <span>Hire Me</span>
+                <ArrowUpRight className="w-3.5 h-3.5" />
               </button>
             </div>
 
@@ -126,38 +124,6 @@ export const Hero: React.FC<HeroProps> = ({ onOpenContact, onOpenResume, onViewG
                 <span>LinkedIn</span>
               </a>
             </div>
-
-            {/* Quick Section Jump (Inside About Panel) */}
-            {onNavigateToSection && (
-              <div className="pt-4 border-t border-slate-800/80 flex flex-wrap items-center justify-center sm:justify-start gap-2.5 text-xs">
-                <span className="text-[11px] font-mono text-slate-500 uppercase tracking-wider block sm:inline">
-                  Explore:
-                </span>
-                <div className="flex flex-wrap items-center gap-2">
-                  <button
-                    onClick={() => onNavigateToSection('skills')}
-                    className="px-3 py-1.5 bg-slate-900/90 hover:bg-slate-800 border border-slate-800 hover:border-cyan-500/50 rounded-lg text-slate-300 hover:text-cyan-400 font-medium text-xs flex items-center gap-1.5 transition-colors"
-                  >
-                    <Cpu className="w-3.5 h-3.5 text-cyan-400" />
-                    <span>Skills</span>
-                  </button>
-                  <button
-                    onClick={() => onNavigateToSection('experience')}
-                    className="px-3 py-1.5 bg-slate-900/90 hover:bg-slate-800 border border-slate-800 hover:border-blue-500/50 rounded-lg text-slate-300 hover:text-cyan-400 font-medium text-xs flex items-center gap-1.5 transition-colors"
-                  >
-                    <Briefcase className="w-3.5 h-3.5 text-blue-400" />
-                    <span>Experience</span>
-                  </button>
-                  <button
-                    onClick={() => onNavigateToSection('contact')}
-                    className="px-3 py-1.5 bg-slate-900/90 hover:bg-slate-800 border border-slate-800 hover:border-emerald-500/50 rounded-lg text-slate-300 hover:text-cyan-400 font-medium text-xs flex items-center gap-1.5 transition-colors"
-                  >
-                    <Mail className="w-3.5 h-3.5 text-emerald-400" />
-                    <span>Contact</span>
-                  </button>
-                </div>
-              </div>
-            )}
           </div>
         </div>
       </div>

@@ -33,12 +33,12 @@ export const ExperienceTimeline: React.FC = () => {
               <div key={idx} className="relative z-10 pl-8 sm:pl-10 space-y-2">
                 {/* Connecting line to next item (stops at the last card) */}
                 {idx < WORK_HISTORY.length - 1 && (
-                  <div className="absolute left-3.5 sm:left-4.5 top-6 -bottom-6 w-0.5 bg-slate-800 -translate-x-1/2 pointer-events-none" />
+                  <div className="absolute left-3 sm:left-4 top-6 -bottom-6 w-0.5 bg-slate-800 -translate-x-1/2 pointer-events-none" />
                 )}
 
                 {/* Timeline Point Node Icon */}
                 <div
-                  className={`absolute left-3.5 sm:left-4.5 top-4 sm:top-5 -translate-x-1/2 w-4 h-4 rounded-full bg-[#0c0e14] border-2 ring-4 ring-[#090a0f] flex items-center justify-center z-10 ${
+                  className={`absolute left-3 sm:left-4 top-5 -translate-x-1/2 w-4 h-4 rounded-full bg-[#0c0e14] border-2 ring-4 ring-[#090a0f] flex items-center justify-center z-10 ${
                     item.type === 'Work'
                       ? 'border-cyan-400 shadow-[0_0_8px_rgba(6,182,212,0.35)]'
                       : item.type === 'Course'

@@ -97,10 +97,13 @@ export const ProjectsSection: React.FC<ProjectsSectionProps> = ({
             return (
               <div
                 key={project.id}
-                className="group bg-[#0c0e14] border border-slate-800 rounded-xl overflow-hidden hover:border-cyan-500/50 transition-all duration-300 flex flex-col justify-between shadow-lg"
+                className="group bg-[#0c0e14] border border-slate-800 rounded-xl overflow-hidden hover:border-cyan-500/50 transition-all duration-200 flex flex-col justify-between shadow-lg"
               >
                 {/* Media Image */}
-                <div className="relative aspect-[16/10] overflow-hidden bg-slate-950">
+                <div
+                  className="relative aspect-[16/10] overflow-hidden bg-slate-950 cursor-pointer"
+                  onClick={() => onSelectProject(project.id)}
+                >
                   <img
                     src={project.image}
                     alt={project.title}
@@ -108,28 +111,27 @@ export const ProjectsSection: React.FC<ProjectsSectionProps> = ({
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-[#0c0e14] via-transparent to-transparent opacity-80" />
 
-                  {/* Top Badge */}
-                  <div className="absolute top-2.5 left-2.5">
-                    <span className={`px-2 py-0.5 rounded text-[10px] font-mono border backdrop-blur ${
-                      project.category === 'Studio Project'
-                        ? 'bg-cyan-950/80 text-cyan-300 border-cyan-700/60 font-semibold'
-                        : 'bg-slate-950/80 text-slate-300 border-slate-800'
-                    }`}>
-                      {project.company || project.category}
-                    </span>
-                  </div>
-
-                  {/* Genre Tag */}
+                  {/* Clean unboxed tag on image bottom */}
                   <div className="absolute bottom-2.5 left-3 right-3 flex items-center justify-between text-[11px] font-mono">
                     <span className="text-cyan-400 font-semibold truncate max-w-[70%]">{project.genre}</span>
-                    <span className="text-slate-300 text-[10px] bg-black/60 px-1.5 py-0.5 rounded">{project.platforms[0]}</span>
+                    <span className="text-slate-300 text-[10px] bg-black/70 px-2 py-0.5 rounded border border-slate-800/60">{project.platforms[0]}</span>
                   </div>
                 </div>
 
                 {/* Body Content */}
                 <div className="p-4 space-y-3 flex-1 flex flex-col justify-between">
                   <div className="space-y-1.5">
-                    <h3 className="text-base font-bold font-display text-white group-hover:text-cyan-400 transition-colors">
+                    {/* Unboxed category / company */}
+                    <div className="text-[11px] font-mono text-slate-400 flex items-center gap-1.5">
+                      <span className={project.category === 'Studio Project' ? 'text-cyan-400 font-medium' : 'text-slate-400'}>
+                        {project.company || project.category}
+                      </span>
+                    </div>
+
+                    <h3
+                      onClick={() => onSelectProject(project.id)}
+                      className="text-base font-bold font-display text-white group-hover:text-cyan-400 transition-colors cursor-pointer"
+                    >
                       {project.title}
                     </h3>
                     <p className="text-xs text-slate-300 line-clamp-2 leading-relaxed">
@@ -171,7 +173,7 @@ export const ProjectsSection: React.FC<ProjectsSectionProps> = ({
                       )}
 
                       {/* Watch Video Button */}
-                      {youtubeLink && (
+                      {youtubeLink && !webglLink && (
                         <button
                           onClick={() => onOpenVideo(youtubeLink.url, project.title)}
                           className="flex-1 py-1.5 px-2.5 bg-red-600/90 hover:bg-red-500 text-white font-semibold rounded text-xs flex items-center justify-center gap-1.5 transition-colors"
@@ -197,18 +199,6 @@ export const ProjectsSection: React.FC<ProjectsSectionProps> = ({
             );
           })}
         </div>
-
-        {/* Bottom banner in Teaser mode */}
-        {isTeaser && onViewAllGames && (
-          <div className="pt-2 flex justify-center">
-            <button
-              onClick={onViewAllGames}
-              className="px-6 py-3 bg-slate-900 hover:bg-slate-800 border border-cyan-500/40 text-cyan-400 hover:text-cyan-300 font-bold text-xs rounded-xl transition-all flex items-center gap-2 shadow-lg"
-            >
-              <span>Explore All Projects &rarr;</span>
-            </button>
-          </div>
-        )}
       </div>
     </section>
   );
