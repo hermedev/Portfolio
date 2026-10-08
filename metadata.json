@@ -1,0 +1,6 @@
+{
+  "name": "HermeDev - Unity Game Developer Portfolio",
+  "description": "Cross-platform portfolio of HermeDev (Midhun), Senior Unity Game Developer specializing in gameplay programming, physics systems, custom shaders, and cross-platform releases.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
