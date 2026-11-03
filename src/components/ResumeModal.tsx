@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { X, Printer, Copy, Check, Phone, Mail, MapPin } from 'lucide-react';
+import { X, Printer, Copy, Check, Phone, Mail, MapPin, Download } from 'lucide-react';
 import { MIDHUN_INFO, WORK_HISTORY, PROJECTS, TECHNICAL_SKILLS } from '../data/portfolioData';
 
 interface ResumeModalProps {
@@ -62,7 +62,16 @@ export const ResumeModal: React.FC<ResumeModalProps> = ({ isOpen, onClose }) => 
           </div>
 
           <div className="flex items-center gap-2">
-            <button
+                        <a
+              href={MIDHUN_INFO.resumePdf}
+              download="MIDHUN_BABU_Resume.pdf"
+              className="px-2.5 py-1.5 bg-cyan-400 hover:bg-cyan-300 text-slate-950 font-bold rounded transition-colors flex items-center gap-1.5 text-xs font-mono shadow-sm hover-lift"
+              title="Download PDF Resume"
+            >
+              <Download className="w-3.5 h-3.5" />
+              <span>Download PDF</span>
+            </a>
+<button
               onClick={handlePrint}
               className="px-2.5 py-1.5 text-slate-400 hover:text-white hover:bg-slate-800 rounded transition-colors hidden sm:flex items-center gap-1.5 text-xs font-mono hover-lift"
               title="Print Resume"

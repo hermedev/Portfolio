@@ -89,7 +89,7 @@ export const ContactSection: React.FC = () => {
                   </a>
                   <div className="flex items-center gap-1">
                     <a
-                      href="https://wa.me/917560855307"
+                      href={`https://wa.me/${MIDHUN_INFO.phone.replace(/[^0-9]/g, "")}`}
                       target="_blank"
                       rel="noopener noreferrer"
                       className="p-1 text-emerald-400 hover:text-white"

@@ -46,7 +46,8 @@ export const MIDHUN_INFO = {
   linkedIn: "https://www.linkedin.com/in/midhun-babu-2a3749276/",
   github: "https://github.com/hermedev",
   photo: asset("assets/midhun/midhun_photo.jpg"),
-  experienceYears: "Nearly 2 Years",
+  resumePdf: asset('MIDHUN_BABU_Resume.pdf'),
+  experienceYears: '1.5+ Years',
   summary: "Unity Game Developer with experience across mobile, WebGL, and multiplayer game projects. Comfortable building gameplay systems, UI flow, networked features, and performance-minded Unity scenes using C#."
 };
 
@@ -350,8 +351,8 @@ export const WORK_HISTORY: Experience[] = [
     period: "2021 - 2023",
     location: "Trivandrum, India",
     type: "Education",
-    summary: "",
-    achievements: [],
-    technologies: []
+    summary: "Completed higher secondary education in Commerce with coursework in computer applications and business mathematics.",
+    achievements: ["Foundation in computer applications, analytical problem solving, and quantitative skills."],
+    technologies: ["Computer Applications", "Mathematics"]
   }
 ];

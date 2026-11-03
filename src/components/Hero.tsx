@@ -53,7 +53,7 @@ export const Hero: React.FC<HeroProps> = ({ onOpenContact, onOpenResume, onViewG
             <div className="flex items-center justify-center sm:justify-start gap-2 text-xs font-mono text-slate-400">
               <span className="inline-flex items-center gap-1.5 px-2.5 py-1 bg-slate-900 border border-slate-800 rounded text-slate-300">
                 <MapPin className="w-3.5 h-3.5 text-amber-400" />
-                <span>Trivandrum, India</span>
+                <span>{MIDHUN_INFO.location}</span>
               </span>
             </div>
 
