@@ -1,15 +1,15 @@
 import React from 'react';
-import { FileText, Mail, MapPin, Github, Gamepad2, ArrowUpRight } from 'lucide-react';
-import { LinkedInIcon } from './icons/LinkedInIcon';
+import { FileText, Mail, MapPin, Github, Linkedin, Gamepad2, ArrowUpRight } from 'lucide-react';
 import { MIDHUN_INFO } from '../data/portfolioData';
 
 interface HeroProps {
   onOpenContact: () => void;
+  onOpenResume: () => void;
   onViewGames?: () => void;
   onNavigateToSection?: (sectionId: string) => void;
 }
 
-export const Hero: React.FC<HeroProps> = ({ onOpenContact, onViewGames }) => {
+export const Hero: React.FC<HeroProps> = ({ onOpenContact, onOpenResume, onViewGames }) => {
   return (
     <section id="about" className="relative py-14 sm:py-20 bg-engine-grid border-b border-slate-800/80 overflow-hidden">
       {/* Subtle calm ambient lighting */}
@@ -77,15 +77,13 @@ export const Hero: React.FC<HeroProps> = ({ onOpenContact, onViewGames }) => {
                 </a>
               )}
 
-              <a
-                href={MIDHUN_INFO.resumePdf}
-                target="_blank"
-                rel="noopener noreferrer"
+              <button
+                onClick={onOpenResume}
                 className="px-4 py-2.5 bg-slate-900 hover:bg-slate-800 border border-slate-800 text-slate-200 font-semibold rounded-lg transition-colors inline-flex items-center gap-2 text-xs hover-lift"
               >
                 <FileText className="w-3.5 h-3.5 text-amber-400" />
                 <span>View CV / Resume</span>
-              </a>
+              </button>
 
               <button
                 onClick={onOpenContact}
@@ -120,9 +118,9 @@ export const Hero: React.FC<HeroProps> = ({ onOpenContact, onViewGames }) => {
                 href={MIDHUN_INFO.linkedIn}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="hover:text-[#0A66C2] text-[#0A66C2] transition-colors flex items-center gap-1.5 font-medium"
+                className="hover:text-cyan-400 transition-colors flex items-center gap-1.5"
               >
-                <LinkedInIcon className="w-3.5 h-3.5 text-[#0A66C2]" />
+                <Linkedin className="w-3.5 h-3.5 text-blue-400" />
                 <span>LinkedIn</span>
               </a>
             </div>
@@ -132,3 +130,4 @@ export const Hero: React.FC<HeroProps> = ({ onOpenContact, onViewGames }) => {
     </section>
   );
 };
+

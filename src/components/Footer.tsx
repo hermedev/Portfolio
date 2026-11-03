@@ -1,6 +1,5 @@
 import React from 'react';
-import { Gamepad2, Github, Mail, Phone, ArrowUp } from 'lucide-react';
-import { LinkedInIcon } from './icons/LinkedInIcon';
+import { Gamepad2, Github, Linkedin, Mail, Phone, ArrowUp } from 'lucide-react';
 import { WhatsAppIcon } from './icons/WhatsAppIcon';
 import { MIDHUN_INFO } from '../data/portfolioData';
 
@@ -82,7 +81,7 @@ export const Footer: React.FC<FooterProps> = () => {
               className="hover:text-cyan-400 transition-colors flex items-center gap-1.5 text-slate-300"
               title="LinkedIn Profile"
             >
-              <LinkedInIcon className="w-3.5 h-3.5 text-[#0A66C2]" />
+              <Linkedin className="w-3.5 h-3.5 text-blue-400" />
               <span>LinkedIn</span>
             </a>
           </div>

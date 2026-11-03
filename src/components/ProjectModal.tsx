@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { X, ExternalLink, Youtube, Globe } from 'lucide-react';
 import { Project } from '../data/portfolioData';
 
@@ -9,18 +9,6 @@ interface ProjectModalProps {
 
 export const ProjectModal: React.FC<ProjectModalProps> = ({ project, onClose }) => {
   const [activeTab, setActiveTab] = useState<'overview' | 'contributions'>('overview');
-  useEffect(() => {
-    if (!project) return;
-    const handleKeyDown = (e: KeyboardEvent) => {
-      if (e.key === 'Escape') onClose();
-    };
-    document.body.style.overflow = 'hidden';
-    window.addEventListener('keydown', handleKeyDown);
-    return () => {
-      document.body.style.overflow = '';
-      window.removeEventListener('keydown', handleKeyDown);
-    };
-  }, [project, onClose]);
 
   if (!project) return null;
 

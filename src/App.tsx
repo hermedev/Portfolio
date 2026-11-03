@@ -13,12 +13,14 @@ import { ContactSection } from './components/ContactSection';
 import { Footer } from './components/Footer';
 import { ProjectModal } from './components/ProjectModal';
 import { VideoModal } from './components/VideoModal';
+import { ResumeModal } from './components/ResumeModal';
 import { PROJECTS } from './data/portfolioData';
 import { Mail } from 'lucide-react';
 
 export default function App() {
   const [activeView, setActiveView] = useState<'about' | 'games'>('about');
   const [selectedProjectId, setSelectedProjectId] = useState<string | null>(null);
+  const [isResumeOpen, setIsResumeOpen] = useState<boolean>(false);
   const [activeVideo, setActiveVideo] = useState<{ url: string; title: string } | null>(null);
 
   // Sync with URL hash
@@ -79,6 +81,7 @@ export default function App() {
       <Navbar
         activeView={activeView}
         onSelectView={handleSelectView}
+        onOpenResume={() => setIsResumeOpen(true)}
         onOpenContact={handleOpenContact}
       />
 
@@ -92,7 +95,8 @@ export default function App() {
             {/* Hero Intro */}
             <Hero
               onOpenContact={handleOpenContact}
-                    onViewGames={() => handleSelectView('games')}
+              onOpenResume={() => setIsResumeOpen(true)}
+              onViewGames={() => handleSelectView('games')}
               onNavigateToSection={(id) => handleSelectView('about', id)}
             />
 
@@ -154,6 +158,7 @@ export default function App() {
 
       {/* Footer */}
       <Footer
+        onOpenResume={() => setIsResumeOpen(true)}
         onOpenContact={handleOpenContact}
       />
 
@@ -170,7 +175,10 @@ export default function App() {
         onClose={() => setActiveVideo(null)}
       />
 
-
+      <ResumeModal
+        isOpen={isResumeOpen}
+        onClose={() => setIsResumeOpen(false)}
+      />
     </div>
   );
 }

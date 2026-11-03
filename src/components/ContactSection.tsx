@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
-import { Mail, Phone, Check, Copy, Send, Github, ExternalLink, MapPin } from 'lucide-react';
-import { LinkedInIcon } from './icons/LinkedInIcon';
+import { Mail, Phone, Check, Copy, Send, Github, Linkedin, ExternalLink, MapPin } from 'lucide-react';
 import { WhatsAppIcon } from './icons/WhatsAppIcon';
 import { MIDHUN_INFO } from '../data/portfolioData';
 
@@ -147,7 +146,7 @@ export const ContactSection: React.FC = () => {
                     title="LinkedIn: Midhun Babu"
                   >
                     <div className="flex items-center gap-2 min-w-0">
-                      <LinkedInIcon className="w-4 h-4 text-[#0A66C2] shrink-0" />
+                      <Linkedin className="w-4 h-4 text-blue-400 group-hover:text-blue-300 shrink-0" />
                       <span className="truncate">LinkedIn</span>
                     </div>
                     <ExternalLink className="w-3 h-3 text-slate-500 group-hover:text-slate-400 shrink-0 ml-1" />

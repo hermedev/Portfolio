@@ -5,12 +5,14 @@ import { MIDHUN_INFO } from '../data/portfolioData';
 interface NavbarProps {
   activeView: 'about' | 'games';
   onSelectView: (view: 'about' | 'games', scrollToId?: string) => void;
+  onOpenResume: () => void;
   onOpenContact: () => void;
 }
 
 export const Navbar: React.FC<NavbarProps> = ({
   activeView,
   onSelectView,
+  onOpenResume,
   onOpenContact
 }) => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -61,15 +63,13 @@ export const Navbar: React.FC<NavbarProps> = ({
 
         {/* Action Buttons */}
         <div className="hidden sm:flex items-center gap-2.5">
-          <a
-            href={MIDHUN_INFO.resumePdf}
-            target="_blank"
-            rel="noopener noreferrer"
+          <button
+            onClick={onOpenResume}
             className="inline-flex items-center gap-1.5 px-3 py-1.5 text-xs font-medium text-slate-300 bg-slate-900 border border-slate-800 rounded-lg hover:bg-slate-800 hover:text-white transition-colors"
           >
             <FileText className="w-3.5 h-3.5 text-amber-400" />
             Resume
-          </a>
+          </button>
 
           <button
             onClick={onOpenContact}
@@ -136,16 +136,16 @@ export const Navbar: React.FC<NavbarProps> = ({
           </div>
 
           <div className="pt-1 flex flex-col gap-2">
-            <a
-              href={MIDHUN_INFO.resumePdf}
-              target="_blank"
-              rel="noopener noreferrer"
-              onClick={() => setMobileMenuOpen(false)}
+            <button
+              onClick={() => {
+                setMobileMenuOpen(false);
+                onOpenResume();
+              }}
               className="w-full py-2.5 text-center text-xs font-medium text-slate-300 bg-slate-900 border border-slate-800 rounded-lg flex items-center justify-center gap-1.5"
             >
               <FileText className="w-3.5 h-3.5 text-amber-400" />
               <span>View Resume / CV</span>
-            </a>
+            </button>
 
             <button
               onClick={() => {
