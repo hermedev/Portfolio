@@ -33,6 +33,8 @@ export interface Experience {
   technologies: string[];
 }
 
+const asset = (path: string) => `${import.meta.env.BASE_URL}${path}`;
+
 export const MIDHUN_INFO = {
   name: "Midhun Babu B",
   handle: "hermedev",
@@ -43,7 +45,7 @@ export const MIDHUN_INFO = {
   location: "Trivandrum, Kerala, India",
   linkedIn: "https://www.linkedin.com/in/midhun-babu-2a3749276/",
   github: "https://github.com/hermedev",
-  photo: "/src/assets/midhun/midhun_photo.jpg",
+  photo: asset("assets/midhun/midhun_photo.jpg"),
   experienceYears: "Nearly 2 Years",
   summary: "Unity Game Developer with experience across mobile, WebGL, and multiplayer game projects. Comfortable building gameplay systems, UI flow, networked features, and performance-minded Unity scenes using C#."
 };
@@ -58,7 +60,7 @@ export const PROJECTS: Project[] = [
     genre: "Multiplayer Board Game",
     platforms: ["Mobile", "Multiplayer"],
     techStack: ["Unity", "C#", "Photon Fusion", "Photon PUN", "UI"],
-    image: "/src/assets/images/tokyo_ludo_gameplay_1791381401710.jpg",
+    image: asset("assets/images/tokyo_ludo_gameplay_1791381401710.jpg"),
     featured: true,
     overview: "Tokyo Ludo is a multiplayer mobile board game developed at Carina Softlabs Inc. My work covered gameplay flow, UI screens, turn handling, and Photon networking tasks during the move from Photon PUN toward Photon Fusion.",
     keyContributions: [
@@ -90,7 +92,7 @@ export const PROJECTS: Project[] = [
     genre: "MMORPG / PvP Fantasy",
     platforms: ["PC", "Mobile", "Multiplayer"],
     techStack: ["Unity", "C#", "Mirror", "Photon", "URP", "VFX/SFX"],
-    image: "/src/assets/images/warvox_mmorpg_siege_1791381412869.jpg",
+    image: asset("assets/images/warvox_mmorpg_siege_1791381412869.jpg"),
     featured: true,
     overview: "Warvox is a fantasy MMORPG project at Carina Softlabs Inc. I contributed to PvP gameplay features, dungeon-related systems, proximity voice chat integration, and iteration on weapon skills.",
     keyContributions: [
@@ -123,7 +125,7 @@ export const PROJECTS: Project[] = [
     genre: "3D Open-World Delivery",
     platforms: ["Mobile", "3D Physics"],
     techStack: ["Unity", "C#", "Vehicle Physics", "AI", "NavMesh", "Addressables"],
-    image: "/src/assets/images/cheezy_wheelz_delivery_1791381427184.jpg",
+    image: asset("assets/images/cheezy_wheelz_delivery_1791381427184.jpg"),
     featured: true,
     overview: "Cheezy Wheelz is a mobile 3D food delivery game. My work focused on the delivery loop, motorcycle control feel, AI traffic/pedestrian behavior, minimap navigation, and mobile performance improvements.",
     keyContributions: [
@@ -156,7 +158,7 @@ export const PROJECTS: Project[] = [
     genre: "2D Board Puzzle",
     platforms: ["WebGL / Browser", "Mobile Friendly"],
     techStack: ["Unity", "C#", "WebGL", "2D Grid Logic", "PlayerPrefs"],
-    image: "/src/assets/midhun/game_2048.png",
+    image: asset("assets/midhun/game_2048.png"),
     featured: true,
     overview: "A Unity WebGL 2048 project built to practice grid logic, input handling, tile animation, scoring, and browser export.",
     keyContributions: [
@@ -183,7 +185,7 @@ export const PROJECTS: Project[] = [
     genre: "2D Action Platformer",
     platforms: ["PC / Mobile", "2D Platformer"],
     techStack: ["Unity", "C#", "2D Physics", "Animation", "Weapons"],
-    image: "/src/assets/midhun/killzone.png",
+    image: asset("assets/midhun/killzone.png"),
     featured: true,
     overview: "KillZone is a 2D action platformer prototype made in Unity. It focuses on player movement, weapon handling, enemy behavior, and camera follow during combat.",
     keyContributions: [
@@ -210,7 +212,7 @@ export const PROJECTS: Project[] = [
     genre: "3D Vehicle Simulator",
     platforms: ["Mobile / PC", "3D Physics"],
     techStack: ["Unity", "C#", "WheelCollider", "Triggers"],
-    image: "/src/assets/midhun/driving_master.png",
+    image: asset("assets/midhun/driving_master.png"),
     featured: true,
     overview: "Driving Master is a 3D parking simulator prototype focused on vehicle control, level progression, collision checks, and parking-zone completion.",
     keyContributions: [
@@ -237,7 +239,7 @@ export const PROJECTS: Project[] = [
     genre: "Arcade / Physics 2D",
     platforms: ["Unity Play", "Browser"],
     techStack: ["Unity", "C#", "Physics 2D", "Unity Play"],
-    image: "/src/assets/midhun/brickbreaker.png",
+    image: asset("assets/midhun/brickbreaker.png"),
     featured: false,
     overview: "A small Unity Play project made while learning Unity basics. It covers paddle movement, ball physics, scoring, lives, and restart flow.",
     keyContributions: [
@@ -264,7 +266,7 @@ export const PROJECTS: Project[] = [
     genre: "3D Puzzle Prototype",
     platforms: ["PC / Prototype"],
     techStack: ["Unity", "C#", "Transforms", "Vector Math"],
-    image: "/src/assets/midhun/cube.png",
+    image: asset("assets/midhun/cube.png"),
     featured: false,
     overview: "A Unity prototype for practicing 3D transforms, runtime parenting, face selection, and rotation snapping.",
     keyContributions: [
