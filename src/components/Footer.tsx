@@ -1,5 +1,6 @@
 import React from 'react';
-import { Gamepad2, Github, Linkedin, Mail, Phone, ArrowUp } from 'lucide-react';
+import { Gamepad2, Github, Mail, Phone, ArrowUp } from 'lucide-react';
+import { LinkedInIcon } from './icons/LinkedInIcon';
 import { WhatsAppIcon } from './icons/WhatsAppIcon';
 import { MIDHUN_INFO } from '../data/portfolioData';
 

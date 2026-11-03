@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
-import { Mail, Phone, Check, Copy, Send, Github, Linkedin, ExternalLink, MapPin } from 'lucide-react';
+import { Mail, Phone, Check, Copy, Send, Github, ExternalLink, MapPin } from 'lucide-react';
+import { LinkedInIcon } from './icons/LinkedInIcon';
 import { WhatsAppIcon } from './icons/WhatsAppIcon';
 import { MIDHUN_INFO } from '../data/portfolioData';
 
