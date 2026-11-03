@@ -82,7 +82,7 @@ export const Footer: React.FC<FooterProps> = () => {
               className="hover:text-cyan-400 transition-colors flex items-center gap-1.5 text-slate-300"
               title="LinkedIn Profile"
             >
-              <Linkedin className="w-3.5 h-3.5 text-blue-400" />
+              <LinkedInIcon className="w-3.5 h-3.5 text-[#0A66C2]" />
               <span>LinkedIn</span>
             </a>
           </div>
